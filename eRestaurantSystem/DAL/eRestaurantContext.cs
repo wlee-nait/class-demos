@@ -12,7 +12,7 @@ using System.Data.Entity;
 namespace eRestaurantSystem.DAL
 {
     //hookup to Entity Framework via the DbContext base class
-    internal class eRestaurantContext : DbContext
+    internal class eRestaurantContext:DbContext
     {
         //constructor pass to the base class the name value for the 
         //connection string to the database found in WebConnectionStrings.config
