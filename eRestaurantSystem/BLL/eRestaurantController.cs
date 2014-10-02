@@ -22,16 +22,12 @@ namespace eRestaurantSystem.BLL
             //interfacing with our Context class
             using (eRestaurantContext context = new eRestaurantContext())
             {
-                return context.SpecialEvents.ToList();
-            }
-        }
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public List<Reservation> Reservation_List()
-        {
-            //interfacing with our Context class
-            using (eRestaurantContext context = new eRestaurantContext())
-            {
-                return context.Reservations.ToList();
+                //using Context DBSet to get entity data
+                //return context.SpecialEvents.ToList();
+
+                //get a list of instances for entity using LINQ
+                var results = from item in context.SpecialEvents select item;
+                return results.ToList();
             }
         }
         [DataObjectMethod(DataObjectMethodType.Select,false)]
@@ -76,6 +72,15 @@ namespace eRestaurantSystem.BLL
         }
         #endregion
         #region Reservations
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Reservation> Reservation_List()
+        {
+            //interfacing with our Context class
+            using (eRestaurantContext context = new eRestaurantContext())
+            {
+                return context.Reservations.ToList();
+            }
+        }
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Reservation> ReservationbyEvent(string eventcode)
         {

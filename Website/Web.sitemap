@@ -23,6 +23,7 @@
     </siteMapNode>
     <siteMapNode title="Demos" description="class demos">
       <siteMapNode url="~/DemoPages/ReservationbyTypes.aspx" title="Reservations by type" description="Reservations by type" />
+      <siteMapNode url="~/DemoPages/ListViewSpecialEventsCRUD.aspx" title="CRUS using ListView" description="CRUS using ListView" />
     </siteMapNode>
   </siteMapNode>
 </siteMap>
