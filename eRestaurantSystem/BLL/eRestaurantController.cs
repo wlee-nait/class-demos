@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using eRestaurantSystem.Entities;
 using eRestaurantSystem.DAL;
 using System.ComponentModel;
+using eRestaurantSystem.POCOs;
 #endregion
 
 namespace eRestaurantSystem.BLL
@@ -71,6 +72,7 @@ namespace eRestaurantSystem.BLL
             }
         }
         #endregion
+
         #region Reservations
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Reservation> Reservation_List()
@@ -87,6 +89,32 @@ namespace eRestaurantSystem.BLL
             using (eRestaurantContext context = new eRestaurantContext())
             {
                 return context.Reservations.Where(anItem => anItem.Eventcode == eventcode).ToList();
+            }
+        }
+        #endregion
+
+        #region Linq Queries
+        [DataObjectMethod(DataObjectMethodType.Select,false)]
+        public List<CategoryMenuItems> GetCategoryMenuItems()
+        {
+            using(eRestaurantContext context = new eRestaurantContext())
+            {
+                var results = from cat in context.MenuCategories
+                              orderby cat.Description
+                              select new CategoryMenuItems()
+                              {
+                                  Description = cat.Description,
+                                  MenuItems = from item in cat.Items
+                                              where item.Active
+                                              select new MenuItem()
+                                              {
+                                                  Description = item.Description,
+                                                  Price = item.CurrentPrice,
+                                                  Calories = item.Calories,
+                                                  Comment = item.Comment
+                                              }
+                              };
+                results.Dump();
             }
         }
         #endregion
