@@ -114,7 +114,7 @@ namespace eRestaurantSystem.BLL
                                                   Comment = item.Comment
                                               }
                               };
-                results.Dump();
+                return results.ToList(); // this was .Dump() in Linqpad
             }
         }
         #endregion
