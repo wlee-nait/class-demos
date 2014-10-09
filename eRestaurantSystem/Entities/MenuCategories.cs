@@ -10,7 +10,9 @@ namespace eRestaurantSystem.Entities
     public class MenuCategories
     {
         [Key]
-        public int MenuCategoryID { get; set; }
+        public Int32 MenuCategoryID { get; set; }
+        [Required(ErrorMessage = "Description is required.")]
+        [StringLength(15, ErrorMessage = "Description has a maximum 15 characters")]
         public string Description { get; set; }
 
         //navigation
