@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,9 @@ namespace eRestaurantSystem.Entities
         public DateTime HireDate { get; set; }
         public DateTime ReleaseDate { get; set; }
 
+        //creates the equivalent of a ReadOnly property
+        [NotMapped]
+        public string FullName { get { return string.Format("{0}, {1}", LastName, FirstName); } }
         //Navigation
         public virtual ICollection<Bill> Bills { get; set; }
         }

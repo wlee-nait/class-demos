@@ -25,6 +25,20 @@ namespace eRestaurantSystem.DAL
         public DbSet<Bill> Bill { get; set; }
         public DbSet<MenuCategories> MenuCategories { get; set; }
         public DbSet<Items> Items { get; set; }
-        //public DbSet<Table> Tables { get; set; }
+        public DbSet<Table> Tables { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<Reservation>().HasMany(r => r.Tables)
+                .WithMany(t => t.Reservations)
+                .Map(mapping =>
+                {
+                    mapping.ToTable("ReservationTables");
+                    mapping.MapLeftKey("TableID");
+                    mapping.MapRightKey("ReservationID");
+                });
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

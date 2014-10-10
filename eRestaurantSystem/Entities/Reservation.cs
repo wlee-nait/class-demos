@@ -22,6 +22,9 @@ namespace eRestaurantSystem.Entities
         public string Eventcode { get; set; }
 
         //navigation
+        //pointing to a parent (one)
         public virtual SpecialEvent SpecialEvent { get; set; }
+        //pointing to a collection (many)
+        public virtual ICollection<Table> Tables { get; set; }
     }
 }
