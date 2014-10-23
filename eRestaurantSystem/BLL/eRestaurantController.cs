@@ -93,6 +93,26 @@ namespace eRestaurantSystem.BLL
         }
         #endregion
 
+        #region Reports
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<POCOs.CategoryMenuItems> GetReportCategoryMenuItems()
+        {
+            using (eRestaurantContext context = new eRestaurantContext())
+            {
+                var results = from data in context.Items
+                              select new POCOs.CategoryMenuItems
+                              {
+                                  CategoryDescription = data.MenuCategories.Description,
+                                  ItemDescription = data.Description,
+                                  Price = data.CurrentPrice,
+                                  Calories = data.Calories,
+                                  Comment = data.Comment
+                              };
+                return results.ToList(); // this was .Dump() in Linqpad
+            }
+        }
+        #endregion
+
         #region Linq Queries
         [DataObjectMethod(DataObjectMethodType.Select,false)]
         public List<CategoryMenuItems> GetCategoryMenuItems()
