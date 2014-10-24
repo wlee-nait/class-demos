@@ -57,6 +57,7 @@
     <Compile Include="Entities\Waiter.cs" />
     <Compile Include="POCOs\CategoryMenuItems.cs" />
     <Compile Include="POCOs\MenuItem.cs" />
+    <Compile Include="POCOs\TotalItemSalesByMenuCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
